@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "thebarkman.vscode-djaneiro",
+        "batisteo.vscode-django",
+        "dbaeumer.vscode-eslint",
+        "github.vscode-pull-request-github",
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "aaron-bond.better-comments",
+        "njpwerner.autodocstring"
+    ]
+}
