@@ -30,3 +30,20 @@ git push -u origin main
 # setup vscode
 
 try to create vscode project settings and extensions files
+
+# Create user skeleton
+
+create an apps folder and inside we gonna create our apps
+
+> django-admin.exe startapp accounts
+> django-admin.exe startapp authentication
+
+# create a new user model
+
+we restructure our app (models.py -> models foler , views.py -> views folder)
+add apps to project.settings INSTALLED_APPS section
+set AUTH_USER_MODEL to "accounts.UserModel"
+
+> python manage.py makemigrations
+> python manage.py migrate
+> python.exe .\manage.py runserver
