@@ -70,3 +70,5 @@ http://localhost:8000/admin/
 
 install django-allauth package and configure it
 [Issue] connecting with different Oauth same email !
+
+# modify user model (add Image)

@@ -5,6 +5,7 @@ from uuid import uuid4
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import mark_safe
 
 # local imports
 from ..managers import UserManager
@@ -13,6 +14,8 @@ from ..managers import UserManager
 class UserModel(AbstractUser):
     uuid = models.UUIDField(default=uuid4, unique=True)
     email = models.EmailField(_("email address"), unique=True)
+
+    picture = models.ImageField(_("user picture"), upload_to='images/user/picture/', default='defaults/user_default.png')
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
@@ -35,3 +38,8 @@ class UserModel(AbstractUser):
         # Override the default __str__ of AbstractUser that returns username, which may
         # lead to leaking sensitive data in logs.
         return self.username
+    
+    def picture_preview(self): #new
+        return mark_safe('<img src = "{url}" width = "50"/>'.format(
+             url = self.picture.url
+        ))
