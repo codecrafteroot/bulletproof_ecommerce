@@ -60,4 +60,13 @@ create .gitignore file for a dajango project
 
 # Start the development server
 
+> python.exe .\manage.py runserver
+
 # Enter the admin site
+
+http://localhost:8000/admin/
+
+# create auth app
+
+install django-allauth package and configure it
+[Issue] connecting with different Oauth same email !
