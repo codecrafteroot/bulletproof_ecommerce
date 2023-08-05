@@ -2,7 +2,21 @@
 
 {% block content %}
     <h1>Hi, {{ user.username }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+
+    {% if products %}
+        <ul>
+        {% for product in products %}
+            <li>
+                <div>
+                    <a href="{% url 'product-detail' product.pk %}">
+                        {{ product.name }}
+                    </a> : 
+                    <b> with the price of : {{ product.price }} $</b>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Products are available.</p>
+    {% endif %}
 {% endblock %}
