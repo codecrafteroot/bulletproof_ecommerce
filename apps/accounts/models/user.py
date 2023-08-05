@@ -1,5 +1,6 @@
 # thirdparty imports
 from uuid import uuid4
+from hashlib import md5
 
 # builtin imports
 from django.contrib.auth.models import AbstractUser
@@ -14,6 +15,7 @@ from ..managers import UserManager
 class UserModel(AbstractUser):
     uuid = models.UUIDField(default=uuid4, unique=True)
     email = models.EmailField(_("email address"), unique=True)
+    about_me = models.TextField(_("About me"), null=True, blank=True)
 
     picture = models.ImageField(_("user picture"), upload_to='images/user/picture/', default='defaults/user_default.png')
 
@@ -43,3 +45,8 @@ class UserModel(AbstractUser):
         return mark_safe('<img src = "{url}" width = "50"/>'.format(
              url = self.picture.url
         ))
+    
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+            digest, size)

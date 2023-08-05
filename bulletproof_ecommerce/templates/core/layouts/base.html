@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Ecommerce</title>
+      {% else %}
+      <title>Welcome to Bulletproof Ecommerce</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Bulletproof: 
+          <a href="{% url 'index' %}">Home</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'account_logout' %}">Logout</a>
+          <a href="{% url 'profile' %}">Profile</a>
+          {% else %}
+          <a href="{% url 'account_login' %}">Login</a>
+          {% endif %}
+        </div>
+        <hr>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </body>
+</html>
