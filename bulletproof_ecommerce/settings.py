@@ -51,9 +51,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
 
+    'django_cleanup.apps.CleanupConfig',
+
     # created apps 
     'apps.accounts',
     'apps.authentication',
+    'apps.store',
 ]
 
 MIDDLEWARE = [
