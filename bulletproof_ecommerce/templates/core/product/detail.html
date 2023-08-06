@@ -8,4 +8,12 @@
             <td> Price : {{ product.price }} $ </td>
         </tr>
     </table>
+    {% if product.product_images.all %}
+        {% for product_image in product.product_images.all %}
+            <img src="{{ product_image.image.url }}" width="80" height="80">
+        {% endfor %}
+    {% else %}
+        <p>No Images are available for this product.</p>
+    {% endif %}
+    <a href="{%  url 'product-add-images' product.id %}">Add images</a>
 {% endblock %}
