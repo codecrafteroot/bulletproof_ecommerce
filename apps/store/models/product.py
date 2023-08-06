@@ -1,9 +1,7 @@
 # thirdparty imports
-import os
 from uuid import uuid4
 
 # builtin imports
-from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import mark_safe
@@ -28,9 +26,4 @@ class ProductModel(models.Model):
 		return mark_safe('<img src = "{url}" width = "50"/>'.format(
              url = self.principale_image.url
         ))
-	
-
-# class ProductImageModel(models.Model):
-#     product = models.ForeignKey('Product', on_delete=models.SET_NULL, related_name='product_images')
-#     image = models.ImageField(_("product image"), upload_to='images/product/picture/', null=True, blank=True)
     
