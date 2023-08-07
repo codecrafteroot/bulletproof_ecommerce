@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 # local imports
-from apps.store.models import ProductModel
+from apps.store.models import ProductModel, CategoryModel
 # Create your views here.
 
 
@@ -13,9 +13,11 @@ from apps.store.models import ProductModel
 def index(request):
     # return HttpResponse("You're looking Great {}".format(request.user.username))
     products = ProductModel.objects.all()
+    categories = CategoryModel.objects.all()
     template = loader.get_template("core/index.html")
     context = {
         "title": "Home",
-        "products": products
+        "products": products,
+        "categories": categories,
     }
     return HttpResponse(template.render(context, request))

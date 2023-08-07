@@ -5,10 +5,33 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 
 # local imports
-from ..models import ProductModel, ProductImageModel
+from ..models import ProductModel, CategoryModel
 from ..forms import ProductForm, ProductImageForm
 # Create your views here.
 
+@login_required(login_url="/auth/login/")
+def list(request):
+    try:
+        products = ProductModel.objects.all()
+        context = {
+            "title": "All Products",
+            "products": products
+        }
+    except ProductModel.DoesNotExist:
+        raise Http404("Product does not exist")
+    return render(request, "core/product/list.html", context)
+
+@login_required(login_url="/auth/login/")
+def listByCategory(request, category_id):
+    try:
+        category = CategoryModel.objects.get(pk=category_id)
+        context = {
+            "title": "Categories",
+            "products": category.products.all()
+        }
+    except CategoryModel.DoesNotExist:
+        raise Http404("Category does not exist")
+    return render(request, "core/category/products.html", context)
 
 @login_required(login_url="/auth/login/")
 def create(request):

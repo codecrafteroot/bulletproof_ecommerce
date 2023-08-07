@@ -1,6 +1,7 @@
 {% extends "core/layouts/base.html" %}
 
 {% block content %}
+    <h2>{{ title }}</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}  <!-- Use {{ form.as_table }} or {{ form.as_ul }} for different form layouts -->

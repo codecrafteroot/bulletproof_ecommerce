@@ -2,6 +2,14 @@
 
 {% block content %}
     <h1>Hi, {{ user.username }}!</h1>
+    <hr>
+    <div>
+        Categories : 
+        {% for category in categories %}
+            <b><a href="{% url 'category-products' category.pk %}">{{ category.name }}</a></b> | 
+        {% endfor %}
+    </div>
+    <hr>
 
     {% if products %}
         <ul>
@@ -17,7 +25,8 @@
         {% endfor %}
         </ul>
 
-        <a href="{%  url 'product-create' %}">Add new product</a>
+        <a href="{%  url 'product-create' %}">Add new product</a> - 
+        <a href="{%  url 'product-list' %}">See all product</a>
     {% else %}
         <p>No Products are available.</p>
     {% endif %}

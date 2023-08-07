@@ -8,7 +8,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = ProductModel
         fields = '__all__'
-        exclude = ('uuid', )
+        exclude = ('uuid',)
 
 
 class ProductImageForm(forms.ModelForm):

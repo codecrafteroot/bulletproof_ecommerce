@@ -1,0 +1,22 @@
+{% extends "core/layouts/base.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    {% if products %}
+        <ul>
+            {% for product in products %}
+                <li>
+                    <div>
+                        <a href="{% url 'product-detail' product.pk %}">
+                            {{ product.name }}
+                        </a> : 
+                        <b> with the price of : {{ product.price }} $</b>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No products are available in this category.</p>
+    {% endif %}
+    <a href="{%  url 'product-create' %}">Add product</a>
+{% endblock %}
