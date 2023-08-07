@@ -5,16 +5,18 @@ from uuid import uuid4
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-class CategoryModel(models.Model):
+class StoreModel(models.Model):
 	uuid = models.UUIDField(default=uuid4, unique=True)
 	name = models.CharField(max_length=200)
-	description = models.TextField()  
+	description = models.TextField()
+
+	owner = models.ForeignKey('accounts.UserModel', on_delete=models.CASCADE, related_name='user_stores')  
     
 	class Meta:
-		db_table = "category"
+		db_table = "store"
 		ordering = ("uuid",)
-		verbose_name = "Category" 
-		verbose_name_plural = "Categories"
+		verbose_name = "Store" 
+		verbose_name_plural = "Stores"
 	
 	def __str__(self):
 		return self.name

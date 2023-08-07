@@ -38,7 +38,9 @@ def create(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()  # Save the form data to the database
+            item = form.save(commit=False)  # Save the form data to the database
+            item.owner = request.user
+            item.save()
             return redirect('index')  # Replace 'success_url' with the URL to redirect after successful form submission.
     else:
         form = ProductForm()

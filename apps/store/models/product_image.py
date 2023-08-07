@@ -16,3 +16,6 @@ class ProductImageModel(models.Model):
         ordering = ("uuid",)
         verbose_name = "ProductImage" 
         verbose_name_plural = "ProductImages"
+
+    def __str__(self):
+        return self.product.name

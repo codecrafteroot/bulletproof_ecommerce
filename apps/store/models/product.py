@@ -13,7 +13,8 @@ class ProductModel(models.Model):
 	digital = models.BooleanField(default=False,null=True, blank=True)
 	principale_image = models.ImageField(_("product image"), upload_to='images/product/picture/', default='defaults/product_default.png')  
 
-	category = models.ForeignKey('CategoryModel', on_delete=models.SET_NULL, null=True, related_name='products')  
+	category = models.ForeignKey('CategoryModel', on_delete=models.SET_NULL, null=True, related_name='category_products')  
+	owner = models.ForeignKey('accounts.UserModel', on_delete=models.SET_NULL, null=True, blank=True, related_name='user_products')  
     
 	class Meta:
 		db_table = "products"

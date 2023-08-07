@@ -6,6 +6,11 @@
     <div>
       {% if user.is_authenticated %}
         <span>Welcome : <b>{{user.username}}</b></span>
+        {% if user.user_stores.all %}
+          <a href="{% url 'user-store' %}">My Store</a>
+        {% else %}
+          <a href="{% url 'store-create' %}">Create your store</a>
+        {% endif %}
         <a href="{% url 'profile' %}">Profile</a>
         <a href="{% url 'account_logout' %}">Logout</a>
       {% else %}
