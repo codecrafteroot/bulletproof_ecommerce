@@ -16,6 +16,7 @@ class UserModel(AbstractUser):
     uuid = models.UUIDField(default=uuid4, unique=True)
     email = models.EmailField(_("email address"), unique=True)
     about_me = models.TextField(_("About me"), null=True, blank=True)
+    is_costumer = models.BooleanField('Costumer status', default=True)
 
     picture = models.ImageField(_("user picture"), upload_to='images/user/picture/', default='defaults/user_default.png')
 

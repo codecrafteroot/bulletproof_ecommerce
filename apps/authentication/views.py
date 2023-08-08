@@ -3,9 +3,13 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.generic import FormView
+
 
 # local imports
 from apps.store.models import ProductModel, CategoryModel
+from .forms import SignupCompletedForm
+
 # Create your views here.
 
 
@@ -21,3 +25,14 @@ def index(request):
         "categories": categories,
     }
     return HttpResponse(template.render(context, request))
+
+class CompleteSignupView(FormView):
+    form_class = SignupCompletedForm
+    template_name = 'core/auth/complete_signup.html'
+    # success_url = "/"
+    def get_success_url(self):
+        # Your custom logic to determine the dynamic success URL
+        if self.request.user.is_costumer:
+            return '/'
+        else:
+            return '/dashboard/'
