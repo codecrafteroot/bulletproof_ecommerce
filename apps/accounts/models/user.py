@@ -17,6 +17,7 @@ class UserModel(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
     about_me = models.TextField(_("About me"), null=True, blank=True)
     is_costumer = models.BooleanField('Costumer status', default=True)
+    is_signup_completed = models.BooleanField('Signup status', default=False)
 
     picture = models.ImageField(_("user picture"), upload_to='images/user/picture/', default='defaults/user_default.png')
 

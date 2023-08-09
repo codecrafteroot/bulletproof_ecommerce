@@ -36,3 +36,12 @@ class CompleteSignupView(FormView):
             return '/'
         else:
             return '/dashboard/'
+        
+    def form_valid(self, form):
+        # Perform custom logic after successful form validation
+        # This method is executed only when the form is valid
+        print(form.cleaned_data)
+        current_user = self.request.user 
+        current_user.is_signup_completed = True
+        current_user.save()
+        return super().form_valid(form)
